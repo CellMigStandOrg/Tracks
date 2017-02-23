@@ -16,7 +16,8 @@ This is an example of track specification:
 
 ### Simple track
 
-Here you insert the diagram
+![A simple track](SimpleTrack.png){:class="img-responsive"}
+
 
 Object_ID  |  Frame  |  X |  Y
 -----------|---------|----|-----
