@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tracks specification
+title: Specification
 ---
 
 
@@ -8,15 +8,16 @@ title: Tracks specification
 
 This is an example of track specification:
 
-- Object: description
-- Segment: description
-- Track: description
+- Object: description of an object
+- Segment: a linear collection of objects
+- Track: a collection of segments
 
 ## Scenarios
 
 ### Simple track
 
 ![A simple track](SimpleTrack.png){:class="img-responsive"}
+
 
 
 Object_ID  |  Frame  |  X |  Y
