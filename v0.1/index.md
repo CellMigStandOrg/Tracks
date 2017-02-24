@@ -73,7 +73,7 @@ A gap closing event occurs when an object of interest (a cell) disappear for one
 
 This case can be illustrated as follows:
 
-![4](images/Gap_closing.png){:class="img-responsive"}
+![4](images/Gap_Closing.png){:class="img-responsive"}
 
 The detected object is lost at frame 3, and then reappears at frame 4.
 In this case, the linking algorithm will create two segments (the yellow and the blue lines in the image).
