@@ -20,7 +20,7 @@ The following shows an input consisting of 3 images.
 
 The case illustrated shows 3 objects identified in each frame. At this stage, there is no associations between objects across the frames.
 
-![1](images/SimpleTrack_objects.png){:class="img-responsive"}
+![1](images/SimpleTrack_Objects.png){:class="img-responsive"}
 
 The **objects table** is:
 
@@ -38,7 +38,7 @@ Object_ID  |  Frame  |  X |  Y
 
 With a linking algorithm, an association is created between objects across frames, and segments are produced. The colored lines in the next figure represent these segments.
 
-![2](images/SimpleTrack_links.png){:class="img-responsive"}
+![2](images/SimpleTrack_Links.png){:class="img-responsive"}
 
 The **segments table** is:
 
@@ -57,7 +57,7 @@ Segment_ID |  Object_ID
 In this table, the foreign key to the segments table is the **Object_ID**. This specification requires unique **Object_ID** in the objects table. If this is not the case, an extra **frame** column is necessary in the segments table.
 
 Finally, tracks are derived from objects + segments information:
-![3](images/SimpleTrack_tracks.png){:class="img-responsive"}
+![3](images/SimpleTrack_Tracks.png){:class="img-responsive"}
 
 In this simple case, the tracks table would look like this:
 
