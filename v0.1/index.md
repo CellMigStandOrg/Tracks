@@ -8,9 +8,10 @@ title: Specification
 
 This is an example of a track specification:
 
-- **Object**: an object of interest (such a cell) detected in a microscopy image
-- **Segment**: a linear, temporal collection of objects
-- **Track**: a collection of segments
+-   **Object**: an object of interest (such a cell) detected in a microscopy
+    image
+-   **Segment**: a linear, temporal collection of objects
+-   **Track**: a collection of segments
 
 ## Scenarios
 
@@ -18,7 +19,8 @@ This is an example of a track specification:
 
 The following shows an input consisting of 3 images.
 
-The case illustrated shows 3 objects identified in each frame. At this stage, there is no associations between objects across the frames.
+The case illustrated shows 3 objects identified in each frame. At this stage,
+there is no associations between objects across the frames.
 
 ![objects](images/SimpleTrack_Objects.png){:class="img-responsive"}
 
@@ -36,7 +38,9 @@ Object_ID  |  Frame  |  X |  Y
 8          |    3    |    |
 9          |    3    |    |
 
-With a linking algorithm, an association is created between objects across frames, and segments are produced. The colored lines in the next figure represent these segments.
+With a linking algorithm, an association is created between objects across
+frames, and segments are produced. The colored lines in the next figure
+represent these segments.
 
 ![links](images/SimpleTrack_Links.png){:class="img-responsive"}
 
@@ -54,7 +58,9 @@ Segment_ID |  Object_ID
  3         |    6
  3         |    9
 
-In this table, the foreign key to the segments table is the **Object_ID**. This specification requires unique **Object_ID** in the objects table. If this is not the case, an extra **frame** column is necessary in the segments table.
+In this table, the foreign key to the segments table is the **Object_ID**.
+This specification requires unique **Object_ID** in the objects table. If this
+is not the case, an extra **frame** column is necessary in the segments table.
 
 Finally, tracks are derived from objects + segments information:
 ![tracks](images/SimpleTrack_Tracks.png){:class="img-responsive"}
@@ -69,14 +75,16 @@ Track_ID |  Segment_ID
 
 ### Gap-closing
 
-A gap closing event occurs when an object of interest (a cell) disappear for one frame and then reappears a bit further (next frame or more).
+A gap closing event occurs when an object of interest (a cell) disappear for
+one frame and then reappears a bit further (next frame or more).
 
 This case can be illustrated as follows:
 
 ![4](images/Gap_Closing.png){:class="img-responsive"}
 
 The detected object is lost at frame 3, and then reappears at frame 4.
-In this case, the linking algorithm will create two segments (the yellow and the blue lines in the image).
+In this case, the linking algorithm will create two segments (the yellow and
+the blue lines in the image).
 
 The **objects table** is:
 
@@ -96,7 +104,7 @@ Segment_ID |  Object_ID
  2         |    3
  2         |    4
 
- and the corresponding **tracks table**:
+and the corresponding **tracks table**:
 
  Track_ID |  Segment_ID
  ---------|------------
@@ -106,8 +114,10 @@ Segment_ID |  Object_ID
 So, basically, the two segments are joined in one track.
 
 ### Split/merge events
-- Split event: when a detected object seems to divide in two objects in the next frame.
-- Merge event: when two detected objects seem to collide into one object.
+
+-   Split event: when a detected object seems to divide in two objects in the
+    next frame.
+-   Merge event: when two detected objects seem to collide into one object.
 
 #### A split event
 A split event looks like this:
@@ -141,7 +151,9 @@ Segment_ID |  Object_ID
  2         |    6
  2         |    8
 
-In this case, the split event is encoded in the repetition of the **Object_ID** reference: Object_ID = 2 is in Segment_ID = 1 and Segment_ID = 2 (1:n relationship from objects to segments).
+In this case, the split event is encoded in the repetition of the
+**Object_ID** reference: Object_ID = 2 is in Segment_ID = 1 and Segment_ID = 2
+(1:n relationship from objects to segments).
 
 The corresponding **tracks table** is:
 
@@ -184,7 +196,9 @@ Segment_ID |  Object_ID
  2         |    6
  2         |    7
 
-Again, the merge event is encoded in the repetition of the **Object_ID** reference: Object_ID = 5 is in Segment_ID = 1 and Segment_ID = 2 (1:n relationship from objects to segments).
+Again, the merge event is encoded in the repetition of the **Object_ID**
+reference: Object_ID = 5 is in Segment_ID = 1 and Segment_ID = 2 (1:n
+relationship from objects to segments).
 
 The corresponding **tracks table** is:
 
