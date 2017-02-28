@@ -25,6 +25,17 @@ data are held in a *table*. The properties of a table are:
 
 For a formal specification of Tabular Data Models see  [Model for Tabular Data and Metadata on the Web-W3C](https://www.w3.org/TR/2015/WD-tabular-data-model-20150108/#model).
 
+### Goals
+The goal of this specification is to define a common, standard format to represent cell tracking data associated with cell migration experiments.
+The specification should:
+
+- be simple and extensible
+- re-use existing standard formats, where possible
+- be associated with human- and machine-readable metadata
+
+### Language
+The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `SHOULD NOT`, `RECOMMENDED`, `MAY`, and `OPTIONAL` in this specification are to be interpreted as described in [RCF 2119](https://www.ietf.org/rfc/rfc2119.txt).
+
 ### Links
 
 See the [version 0.1](v0.1/index.md) of this specification.

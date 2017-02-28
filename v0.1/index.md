@@ -196,3 +196,6 @@ The corresponding **tracks table** is:
   3       |    2
 
 Segments 1 and 2 are assigned to the same track, track 2.
+
+### Links
+See the data package representation of this specification.
