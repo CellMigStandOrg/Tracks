@@ -17,8 +17,8 @@ the data produced therein:
 1.  A **segmentation algorithm** detects objects of interest (i.e. cells) in a
     set of microscopy images (usually time-lapse), producing *objects*
 2.  A **linking algorithm** finds associations between these objects and links
-    them in time, producing *segments*
-3.  A **segment linking** processes the segments, identifying possible events
+    them in time, producing *links*
+3.  A **segment linking** processes the links, identifying possible events
     (gap-closing, split, merge), producing final *tracks*
 
 This specification aims at representing these data in a **tabular format**:

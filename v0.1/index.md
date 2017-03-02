@@ -10,8 +10,8 @@ This is an example of a track specification:
 
 -   **Object**: an object of interest (such a cell) detected in a microscopy
     image
--   **Segment**: a linear, temporal collection of objects
--   **Track**: a collection of segments
+-   **Link**: a linear, temporal collection of objects
+-   **Track**: a collection of links
 
 ## Scenarios
 
@@ -39,14 +39,14 @@ Object_ID  |  Frame  |  X |  Y
 9          |    3    |    |
 
 With a linking algorithm, an association is created between objects across
-frames, and segments are produced. The colored lines in the next figure
-represent these segments.
+frames, and links are produced. The colored lines in the next figure
+represent these links.
 
 ![links](images/SimpleTrack_Links.png){:class="img-responsive"}
 
-The **segments table** is:
+The **links table** is:
 
-Segment_ID |  Object_ID
+  Link_ID  |  Object_ID
 -----------|------------
  1         |    1
  1         |    4
@@ -58,16 +58,16 @@ Segment_ID |  Object_ID
  3         |    6
  3         |    9
 
-In this table, the foreign key to the segments table is the **Object_ID**.
+In this table, the foreign key to the links table is the **Object_ID**.
 This specification requires unique **Object_ID** in the objects table. If this
-is not the case, an extra **frame** column is necessary in the segments table.
+is not the case, an extra **frame** column `MUST` be present in the links table.
 
-Finally, tracks are derived from objects + segments information:
+Finally, tracks are derived from objects + links information:
 ![tracks](images/SimpleTrack_Tracks.png){:class="img-responsive"}
 
 In this simple case, the **tracks table** would look like this:
 
-Track_ID |  Segment_ID
+Track_ID |  Link_ID
 ---------|------------
  1       |    1
  2       |    2
@@ -83,7 +83,7 @@ This case can be illustrated as follows:
 ![4](images/Gap_Closing.png){:class="img-responsive"}
 
 The detected object is lost at frame 3, and then reappears at frame 4.
-In this case, the linking algorithm will create two segments (the yellow and
+In this case, the linking algorithm will create two links (the yellow and
 the blue lines in the image).
 
 The **objects table** is:
@@ -95,23 +95,52 @@ Object_ID  |  Frame  |  X |  Y
 3          |    4    |    |
 4          |    5    |    |
 
-The **segments table** is:
+The **links table** can take one of the following forms:
 
-Segment_ID |  Object_ID
+- **A**
+
+Link_ID |  Object_ID
+-----------|------------
+ 1         |    1
+ 1         |    2
+ 1         |    3
+ 2         |    3
+ 2         |    4
+
+- **B**
+
+Link_ID |  Object_ID
+-----------|------------
+ 1         |    1
+ 1         |    2
+ 2         |    2
+ 2         |    3
+ 2         |    4
+
+- **C**
+
+Link_ID |  Object_ID
 -----------|------------
  1         |    1
  1         |    2
  2         |    3
  2         |    4
+ 3         |    2
+ 3         |    3
 
-and the corresponding **tracks table**:
+In these three representations, the gap-closing event is explicitly represented in the repetition of the **Object_ID** reference:
 
- Track_ID |  Segment_ID
+- in **A** and **B**, the **Object_ID** repeated is the one after and before the event, respectively
+- in **D**, both the **Object_ID** of the objects right before and after the event are repeated
+
+In any case, the corresponding **tracks table** takes the form:
+
+ Track_ID |  Link_ID
  ---------|------------
   1       |    1
   1       |    2
 
-So, basically, the two segments are joined in one track.
+So, basically, the two links are joined in one track.
 
 ### Split/merge events
 
@@ -137,9 +166,9 @@ Object_ID  |  Frame  |  X |  Y
 7          |    5    |    |
 8          |    5    |    |
 
-The **segments table** is:
+The **links table** is:
 
-Segment_ID |  Object_ID
+Link_ID |  Object_ID
 -----------|------------
  1         |    1
  1         |    2
@@ -152,19 +181,19 @@ Segment_ID |  Object_ID
  2         |    8
 
 In this case, the split event is encoded in the repetition of the
-**Object_ID** reference: Object_ID = 2 is in Segment_ID = 1 and Segment_ID = 2
-(1:n relationship from objects to segments).
+**Object_ID** reference: Object_ID = 2 is in Link_ID = 1 and Link_ID = 2
+(1:n relationship from objects to links).
 
 The corresponding **tracks table** is:
 
- Track_ID |  Segment_ID
+ Track_ID |  Link_ID
  ---------|------------
   1       |    1
   1       |    2
   2       |    2
   3       |    1
 
-Segments 1 and 2 are assigned to the same track, track 1.
+Links 1 and 2 are assigned to the same track, track 1.
 
 #### A merge event
 A merge event looks like this:
@@ -183,9 +212,9 @@ Object_ID  |  Frame  |  X |  Y
 6          |    4    |    |
 7          |    5    |    |
 
-The **segments table** is:
+The **s table** is:
 
-Segment_ID |  Object_ID
+Link_ID |  Object_ID
 -----------|------------
  1         |    1
  1         |    3
@@ -197,19 +226,19 @@ Segment_ID |  Object_ID
  2         |    7
 
 Again, the merge event is encoded in the repetition of the **Object_ID**
-reference: Object_ID = 5 is in Segment_ID = 1 and Segment_ID = 2 (1:n
-relationship from objects to segments).
+reference: Object_ID = 5 is in Link_ID = 1 and Link_ID = 2 (1:n
+relationship from objects to links).
 
 The corresponding **tracks table** is:
 
- Track_ID |  Segment_ID
+ Track_ID |  Link_ID
  ---------|------------
   1       |    1
   2       |    2
   2       |    1
   3       |    2
 
-Segments 1 and 2 are assigned to the same track, track 2.
+Links 1 and 2 are assigned to the same track, track 2.
 
 ### Links
 See the data package representation of this specification.
