@@ -131,7 +131,7 @@ Link_ID |  Object_ID
 In these three representations, the gap-closing event is explicitly represented in the repetition of the **Object_ID** reference:
 
 - in **A** and **B**, the **Object_ID** repeated is the one after and before the event, respectively
-- in **D**, both the **Object_ID** of the objects right before and after the event are repeated
+- in **C**, both the **Object_ID** of the objects right before and after the event are repeated
 
 In any case, the corresponding **tracks table** takes the form:
 
