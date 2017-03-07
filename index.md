@@ -9,8 +9,7 @@ This document contains the working draft of the Tracks specification being
 developed by the
 [Cell Migration Standardisation Organisation (CMSO)](https://cmso.science/).
 
-The current specification is based on the following computational workflow and
-the data produced therein:
+The current specification is based on *tracking by detection* techniques (see computational workflow in the following figure) and the data produced therein:
 
 ![Workflow](images/Workflow.png){:class="img-responsive"}
 
