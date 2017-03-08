@@ -80,11 +80,9 @@ one frame and then reappears a bit further (next frame or more).
 
 This case can be illustrated as follows:
 
-![4](images/Gap_Closing.png){:class="img-responsive"}
+![gap_closing](images/Gap_Closing.png){:class="img-responsive"}
 
 The detected object is lost at frame 3, and then reappears at frame 4.
-In this case, the linking algorithm will create two links (the yellow and
-the blue lines in the image).
 
 The **objects table** is:
 
@@ -95,7 +93,7 @@ Object_ID  |  Frame  |  X |  Y
 3          |    4    |    |
 4          |    5    |    |
 
-The **links table** can take one of the following forms:
+In this specification, the gap-closing event is explicitly represented in the repetition of the **Object_ID** reference. Therefore, the **links table** can take one of the three following forms:
 
 - **A**
 
@@ -107,6 +105,18 @@ Link_ID |  Object_ID
  2         |    3
  2         |    4
 
+Here, the **Object_ID** repeated is the one after the gap event, and the **tracks table** is:
+
+
+  Track_ID |  Link_ID
+  ---------|------------
+   1       |    1
+   1       |    2
+
+This case can be illustrated as follows:
+
+![gap_closing_A](images/Gap_Closing_A.png){:class="img-responsive"}
+
 - **B**
 
 Link_ID |  Object_ID
@@ -116,6 +126,19 @@ Link_ID |  Object_ID
  2         |    2
  2         |    3
  2         |    4
+
+Here, the **Object_ID** repeated is the one before the gap event, and the **tracks table** is:
+
+
+Track_ID |  Link_ID
+---------|------------
+ 1       |    1
+ 1       |    2
+
+
+This case can be illustrated as follows:
+
+![gap_closing_B](images/Gap_Closing_B.png){:class="img-responsive"}
 
 - **C**
 
@@ -128,19 +151,18 @@ Link_ID |  Object_ID
  3         |    2
  3         |    3
 
-In these three representations, the gap-closing event is explicitly represented in the repetition of the **Object_ID** reference:
-
-- in **A** and **B**, the **Object_ID** repeated is the one after and before the event, respectively
-- in **C**, both the **Object_ID** of the objects right before and after the event are repeated
-
-In any case, the corresponding **tracks table** takes the form:
+Here, both the **Object_ID** reference of the objects before and after the event are repeated, and the corresponding **tracks table** is:
 
  Track_ID |  Link_ID
  ---------|------------
   1       |    1
-  1       |    2
+  1       |    3
+  2       |    2
 
-So, basically, the two links are joined in one track.
+This case can be illustrated as follows:
+
+![gap_closing_B](images/Gap_Closing_C.png){:class="img-responsive"}
+
 
 ### Split/merge events
 
@@ -212,7 +234,7 @@ Object_ID  |  Frame  |  X |  Y
 6          |    4    |    |
 7          |    5    |    |
 
-The **s table** is:
+The **links table** is:
 
 Link_ID |  Object_ID
 -----------|------------
@@ -239,6 +261,16 @@ The corresponding **tracks table** is:
   3       |    2
 
 Links 1 and 2 are assigned to the same track, track 2.
+
+
+### Combination of events
+#### A split event with a gap-closing
+
+A split event with a gap-closing looks like this:
+
+
+
+
 
 ### Links
 See the data package representation of this specification.
