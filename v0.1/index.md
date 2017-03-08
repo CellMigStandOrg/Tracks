@@ -38,9 +38,7 @@ Object_ID  |  Frame  |  X |  Y
 8          |    3    |    |
 9          |    3    |    |
 
-With a linking algorithm, an association is created between objects across
-frames, and links are produced. The colored lines in the next figure
-represent these links.
+With a linking algorithm, an association is created between objects across frames, and links are produced. The colored lines in the next figure represent these links.
 
 ![links](images/SimpleTrack_Links.png){:class="img-responsive"}
 
@@ -58,7 +56,7 @@ The **links table** is:
  3         |    6
  3         |    9
 
-In this table, the foreign key to the links table is the **Object_ID**.
+In this table, the foreign key to the objects table is the **Object_ID**.
 This specification requires unique **Object_ID** in the objects table. If this
 is not the case, an extra **frame** column `MUST` be present in the links table.
 
@@ -75,7 +73,7 @@ Track_ID |  Link_ID
 
 ### Gap-closing
 
-A gap closing event occurs when an object of interest (a cell) disappear for
+A gap event occurs when an object of interest (a cell) disappear for
 one frame and then reappears a bit further (next frame or more).
 
 This case can be illustrated as follows:
@@ -156,12 +154,12 @@ Here, both the **Object_ID** reference of the objects before and after the event
  Track_ID |  Link_ID
  ---------|------------
   1       |    1
+  1       |    2
   1       |    3
-  2       |    2
 
 This case can be illustrated as follows:
 
-![gap_closing_B](images/Gap_Closing_C.png){:class="img-responsive"}
+![gap_closing_C](images/Gap_Closing_C.png){:class="img-responsive"}
 
 
 ### Split/merge events
@@ -220,7 +218,7 @@ Links 1 and 2 are assigned to the same track, track 1.
 #### A merge event
 A merge event looks like this:
 
-![Split](images/Merge.png){:class="img-responsive"}
+![Merge](images/Merge.png){:class="img-responsive"}
 
 The **objects table** in this case is:
 
@@ -266,10 +264,70 @@ Links 1 and 2 are assigned to the same track, track 2.
 ### Combination of events
 #### A split event with a gap-closing
 
-A split event with a gap-closing looks like this:
+A split event in combination with a gap-closing event looks like this:
+![Close_Split](images/Gap_Closing_and_Split.png){:class="img-responsive"}
+
+The **objects table** in this case is:
+
+Object_ID  |  Frame  |  X |  Y
+-----------|---------|----|-----
+1          |    1    |    |  
+2          |    2    |    |  
+4          |    3    |    |
+5          |    4    |    |
+6          |    4    |    |
+7          |    5    |    |
+8          |    5    |    |
 
 
+The **links table** can take one of the following forms:
 
+- **A**
+
+Link_ID |  Object_ID
+-----------|------------
+ 1         |    1
+ 1         |    2
+ 1         |    5
+ 3         |    5
+ 3         |    7
+ 2         |    2
+ 2         |    4
+ 2         |    6
+ 2         |    8
+![Gap_Split_A](images/Gap+Split_A.png){:class="img-responsive"}
+
+- **B**
+
+Link_ID |  Object_ID
+-----------|------------
+ 1         |    1
+ 1         |    2
+ 3         |    2
+ 3         |    5
+ 3         |    7
+ 2         |    2
+ 2         |    4
+ 2         |    6
+ 2         |    8
+![Gap_Split_B](images/Gap+Split_B.png){:class="img-responsive"}
+
+ - **C**
+
+
+ Link_ID |  Object_ID
+-----------|------------
+ 1         |    1
+ 1         |    2
+ 3	       |    2
+ 3         |    5
+ 2         |    5
+ 2         |    7
+ 4         |    2
+ 4	       |    4
+ 4	       |    6
+ 4	       |    8
+![Gap_Split_C](images/Gap+Split_C.png){:class="img-responsive"}
 
 
 ### Links
