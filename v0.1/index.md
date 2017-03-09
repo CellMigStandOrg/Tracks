@@ -284,7 +284,7 @@ The **links table** can take one of the following forms:
 
 - **A**
 
-Link_ID |  Object_ID
+Link_ID    |  Object_ID
 -----------|------------
  1         |    1
  1         |    2
@@ -295,11 +295,12 @@ Link_ID |  Object_ID
  2         |    4
  2         |    6
  2         |    8
+
 ![Gap_Split_A](images/Gap+Split_A.png){:class="img-responsive"}
 
 - **B**
 
-Link_ID |  Object_ID
+Link_ID    |  Object_ID
 -----------|------------
  1         |    1
  1         |    2
@@ -310,12 +311,13 @@ Link_ID |  Object_ID
  2         |    4
  2         |    6
  2         |    8
+
 ![Gap_Split_B](images/Gap+Split_B.png){:class="img-responsive"}
 
  - **C**
 
 
- Link_ID |  Object_ID
+ Link_ID   |  Object_ID
 -----------|------------
  1         |    1
  1         |    2
@@ -327,6 +329,7 @@ Link_ID |  Object_ID
  4	       |    4
  4	       |    6
  4	       |    8
+
 ![Gap_Split_C](images/Gap+Split_C.png){:class="img-responsive"}
 
 
