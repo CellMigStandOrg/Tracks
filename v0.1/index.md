@@ -341,5 +341,9 @@ Link_ID    |  Object_ID
 ![Gap_Split_C](images/Gap+Split_C.png){:class="img-responsive"}
 
 
-### Links
-See the data package representation of this specification.
+## File formats
+
+See this [repository](https://github.com/CellMigStandOrg/cell_track_dpkg) for
+more information about a
+[Data Package](http://frictionlessdata.io/data-packages/) based file format
+which supports this specification.
