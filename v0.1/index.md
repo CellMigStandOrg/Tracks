@@ -38,7 +38,9 @@ Object_ID  |  Frame  |  X |  Y
 8          |    3    |    |
 9          |    3    |    |
 
-With a linking algorithm, an association is created between objects across frames, and links are produced. The colored lines in the next figure represent these links.
+With a linking algorithm, an association is created between objects across
+frames, and links are produced. The colored lines in the next figure represent
+these links.
 
 ![links](images/SimpleTrack_Links.png){:class="img-responsive"}
 
@@ -58,7 +60,8 @@ The **links table** is:
 
 In this table, the foreign key to the objects table is the **Object_ID**.
 This specification requires unique **Object_ID** in the objects table. If this
-is not the case, an extra **frame** column `MUST` be present in the links table.
+is not the case, an extra **frame** column `MUST` be present in the links
+table.
 
 Finally, tracks are derived from objects + links information:
 ![tracks](images/SimpleTrack_Tracks.png){:class="img-responsive"}
@@ -91,7 +94,9 @@ Object_ID  |  Frame  |  X |  Y
 3          |    4    |    |
 4          |    5    |    |
 
-In this specification, the gap-closing event is explicitly represented in the repetition of the **Object_ID** reference. Therefore, the **links table** can take one of the three following forms:
+In this specification, the gap-closing event is explicitly represented in the
+repetition of the **Object_ID** reference. Therefore, the **links table** can
+take one of the three following forms:
 
 - **A**
 
@@ -103,7 +108,8 @@ Link_ID |  Object_ID
  2         |    3
  2         |    4
 
-Here, the **Object_ID** repeated is the one after the gap event, and the **tracks table** is:
+Here, the **Object_ID** repeated is the one after the gap event, and the
+**tracks table** is:
 
 
   Track_ID |  Link_ID
@@ -125,7 +131,8 @@ Link_ID |  Object_ID
  2         |    3
  2         |    4
 
-Here, the **Object_ID** repeated is the one before the gap event, and the **tracks table** is:
+Here, the **Object_ID** repeated is the one before the gap event, and the
+**tracks table** is:
 
 
 Track_ID |  Link_ID
@@ -149,7 +156,8 @@ Link_ID |  Object_ID
  3         |    2
  3         |    3
 
-Here, both the **Object_ID** reference of the objects before and after the event are repeated, and the corresponding **tracks table** is:
+Here, both the **Object_ID** reference of the objects before and after the
+event are repeated, and the corresponding **tracks table** is:
 
  Track_ID |  Link_ID
  ---------|------------
