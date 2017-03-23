@@ -8,7 +8,7 @@ title: Specification
 
 This is an example of a track specification:
 
--   **Object**: an object of interest (such a cell) detected in a microscopy
+-   **Object**: an object of interest (such as a cell) detected in a microscopy
     image
 -   **Link**: a linear, temporal collection of objects
 -   **Track**: a collection of links
@@ -20,7 +20,7 @@ This is an example of a track specification:
 The following shows an input consisting of 3 images.
 
 The case illustrated shows 3 objects identified in each frame. At this stage,
-there is no associations between objects across the frames.
+there is no association between objects across the frames.
 
 ![objects](images/SimpleTrack_Objects.png){:class="img-responsive"}
 
@@ -76,8 +76,8 @@ Track_ID |  Link_ID
 
 ### Gap-closing
 
-A gap event occurs when an object of interest (a cell) disappear for
-one frame and then reappears a bit further (next frame or more).
+A gap event occurs when an object of interest (a cell) disappears for
+one or more frames, then reappears.
 
 This case can be illustrated as follows:
 
@@ -209,7 +209,7 @@ Link_ID |  Object_ID
  2         |    8
 
 In this case, the split event is encoded in the repetition of the
-**Object_ID** reference: Object_ID = 2 is in Link_ID = 1 and Link_ID = 2
+**Object_ID** reference: Object_ID = 2 in Link_ID = 1 and Link_ID = 2
 (1:n relationship from objects to links).
 
 The corresponding **tracks table** is:
@@ -232,11 +232,11 @@ The **objects table** in this case is:
 
 Object_ID  |  Frame  |  X |  Y
 -----------|---------|----|-----
-1          |    1    |    |  
-2          |    2    |    |  
-3          |    3    |    |
-4          |    3    |    |
-5          |    4    |    |
+1          |    1    |    |
+2          |    1    |    |
+3          |    2    |    |
+4          |    2    |    |
+5          |    3    |    |
 6          |    4    |    |
 7          |    5    |    |
 
@@ -254,7 +254,7 @@ Link_ID |  Object_ID
  2         |    7
 
 Again, the merge event is encoded in the repetition of the **Object_ID**
-reference: Object_ID = 5 is in Link_ID = 1 and Link_ID = 2 (1:n
+reference: Object_ID = 5 in Link_ID = 1 and Link_ID = 2 (1:n
 relationship from objects to links).
 
 The corresponding **tracks table** is:
