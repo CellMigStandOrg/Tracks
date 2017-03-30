@@ -347,3 +347,9 @@ See this [repository](https://github.com/CellMigStandOrg/cell_track_dpkg) for
 more information about a
 [Data Package](http://frictionlessdata.io/data-packages/) based file format
 which supports this specification.
+
+### Requirements
+The objects table and the links table `MUST` be part of this specification. The tracks table can be inferred from the first two, and it can therefore `MAY` be part of the specification.
+
+### Links
+See the data package representation of this specification.
