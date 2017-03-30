@@ -11,7 +11,7 @@ developed by the
 
 The current specification is based on *tracking by detection* techniques (see computational workflow in the following figure) and the data produced therein:
 
-![Workflow](images/workflow.png){:class="img-responsive"}
+![workflow](images/workflow.png){:class="img-responsive"}
 
 1.  A **segmentation algorithm** detects objects of interest (i.e. cells) in a
     set of microscopy images (usually time-lapse), producing *objects*
