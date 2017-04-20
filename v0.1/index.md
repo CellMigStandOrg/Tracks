@@ -218,8 +218,7 @@ The corresponding **tracks table** is:
  ---------|------------
   1       |    1
   1       |    2
-  2       |    2
-  3       |    1
+
 
 Links 1 and 2 are assigned to the same track, track 1.
 
@@ -262,11 +261,10 @@ The corresponding **tracks table** is:
  Track_ID |  Link_ID
  ---------|------------
   1       |    1
-  2       |    2
-  2       |    1
-  3       |    2
+  1       |    2
 
-Links 1 and 2 are assigned to the same track, track 2.
+
+Links 1 and 2 are assigned to the same track, track 1.
 
 
 ### Combination of events
@@ -306,6 +304,14 @@ Link_ID    |  Object_ID
 
 ![Gap_Split_A](images/Gap+Split_A.png){:class="img-responsive"}
 
+The corresponding **tracks table** is:
+
+ Track_ID |  Link_ID
+ ---------|------------
+  1       |    1
+  1       |    2
+  1       |    3  
+
 - **B**
 
 Link_ID    |  Object_ID
@@ -321,6 +327,14 @@ Link_ID    |  Object_ID
  2         |    8
 
 ![Gap_Split_B](images/Gap+Split_B.png){:class="img-responsive"}
+
+The corresponding **tracks table** is:
+
+ Track_ID |  Link_ID
+ ---------|------------
+  1       |    1
+  1       |    2
+  1       |    3  
 
  - **C**
 
@@ -340,16 +354,21 @@ Link_ID    |  Object_ID
 
 ![Gap_Split_C](images/Gap+Split_C.png){:class="img-responsive"}
 
+The corresponding **tracks table** is:
+
+ Track_ID |  Link_ID
+ ---------|------------
+  1       |    1
+  1       |    2
+  1       |    3  
+  1       |    4
 
 ## File formats
 
 See this [repository](https://github.com/CellMigStandOrg/cell_track_dpkg) for
 more information about a
-[Data Package](http://frictionlessdata.io/data-packages/) based file format
+[Data Package](http://frictionlessdata.io/data-packages/)-based file format
 which supports this specification.
 
 ### Requirements
 The objects table and the links table `MUST` be part of this specification. The tracks table can be inferred from the first two, and it can therefore `MAY` be part of the specification.
-
-### Links
-See the data package representation of this specification.
